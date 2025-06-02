@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>API Documentation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #2980b9;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+        .endpoint {
+            background: white;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .method {
+            font-weight: bold;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .GET { background-color: #27ae60; }
+        .POST { background-color: #2980b9; }
+        .PUT { background-color: #f39c12; }
+        .DELETE { background-color: #c0392b; }
+        pre {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: Consolas, Monaco, 'Courier New', monospace;
+            color: #2c3e50;
+        }
+        p.description {
+            margin-top: 5px;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        .note {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Documentation</h1>
+
+    <h2>User Endpoints</h2>
+
+    <div class="endpoint">
+        <span class="method GET">GET</span>
+        <code>/users</code>
+        <p class="description">Retrieve all users.</p>
+        <pre>Response:
+[
+  {
+    "_id": "64a8c10b33f1d1f09b08a9a1",
+    "email": "example@example.com",
+    "name": "John Doe",
+    "phone": "1234567890",
+    "age": 30,
+    "role": ["client"]
+  },
+  ...
+]</pre>
+    </div>
+
+    <div class="endpoint">
+        <span class="method GET">GET</span>
+        <code>/users/:email</code>
+        <p class="description">Retrieve a user by email.</p>
+        <pre>Example:
+GET /users/john@example.com
+
+Response:
+{
+  "_id": "64a8c10b33f1d1f09b08a9a1",
+  "email": "john@example.com",
+  "name": "John Doe",
+  "phone": "1234567890",
+  "age": 30,
+  "role": ["client"]
+}</pre>
+    </div>
+
+    <div class="endpoint">
+        <span class="method POST">POST</span>
+        <code>/users</code>
+        <p class="description">Create a new user.</p>
+        <pre>Request body:
+{
+  "email": "john@example.com",
+  "password": "securepassword",
+  "name": "John Doe",
+  "phone": "1234567890",
+  "age": 30,
+  "role": ["client"]
+}
+
+Response:
+{
+  "message": "User successfully registered.",
+  "user": {
+    "_id": "64a8c10b33f1d1f09b08a9a1",
+    "email": "john@example.com",
+    "name": "John Doe",
+    "phone": "1234567890",
+    "age": 30,
+    "role": ["client"]
+  }
+}</pre>
+    </div>
+
+    <div class="endpoint">
+        <span class="method PUT">PUT</span>
+        <code>/users/:id</code>
+        <p class="description">Update a user by ID. If password is included, it will be hashed automatically.</p>
+        <pre>Request body:
+{
+  "name": "Jane Doe",
+  "password": "newpassword"
+}
+
+Response:
+{
+  "_id": "64a8c10b33f1d1f09b08a9a1",
+  "email": "john@example.com",
+  "name": "Jane Doe",
+  "phone": "1234567890",
+  "age": 30,
+  "role": ["client"]
+}</pre>
+    </div>
+
+    <div class="endpoint">
+        <span class="method DELETE">DELETE</span>
+        <code>/users/:id</code>
+        <p class="description">Delete a user by ID.</p>
+        <pre>Response:
+{
+  "message": "User successfully deleted"
+}</pre>
+    </div>
+
+    <div class="endpoint">
+        <span class="method POST">POST</span>
+        <code>/login</code>
+        <p class="description">User login with email and password.</p>
+        <pre>Request body:
+{
+  "email": "john@example.com",
+  "password": "securepassword"
+}
+
+Response:
+{
+  "message": "Login successful",
+  "role": ["client"]
+}</pre>
+    </div>
+
+    <h2>Service Endpoints</h2>
+
+    <div class="endpoint">
+        <span class="method GET">GET</span>
+        <code>/services</code>
+        <p class="description">Retrieve all services.</p>
+    </div>
+
+    <div class="endpoint">
+        <span class="method POST">POST</span>
+        <code>/services</code>
+        <p class="description">Create a new service.</p>
+        <pre>Request body:
+{
+  "name": "Room Service",
+  "price": 2500,
+  "description": "Food delivered to your room"
+}</pre>
+    </div>
+
+    <div class="endpoint">
+        <span class="method PUT">PUT</span>
+        <code>/services/:id</code>
+        <p class="description">Update a service by ID.</p>
+    </div>
+
+    <div class="endpoint">
+        <span class="method DELETE">DELETE</span>
+        <code>/services/:id</code>
+        <p class="description">Delete a service by ID.</p>
+    </div>
+
+    <h2>Room Endpoints</h2>
+
+    <div class="endpoint">
+        <span class="method GET">GET</span>
+        <code>/rooms</code>
+        <p class="description">Retrieve all rooms.</p>
+    </div>
+
+    <div class="endpoint">
+        <span class="method POST">POST</span>
+        <code>/rooms</code>
+        <p class="description">Create a new room.</p>
+        <pre>Request body:
+{
+  "type": "suite",
+  "status": "available",
+  "price": 5000
+}</pre>
+    </div>
+
+    <div class="endpoint">
+        <span class="method PUT">PUT</span>
+        <code>/rooms/:id</code>
+        <p class="description">Update a room by ID.</p>
+    </div>
+
+    <div class="endpoint">
+        <span class="method DELETE">DELETE</span>
+        <code>/rooms/:id</code>
+        <p class="description">Delete a room by ID.</p>
+    </div>
+
+    <h2>Reservation Endpoints</h2>
+
+    <div class="endpoint">
+        <span class="method GET">GET</span>
+        <code>/reservations</code>
+        <p class="description">Retrieve all reservations.</p>
+    </div>
+
+    <div class="endpoint">
+        <span class="method POST">POST</span>
+        <code>/reservations</code>
+        <p class="description">Create a new reservation.</p>
+        <pre>Request body:
+{
+  "datetime": "2025-06-15T14:30:00Z",
+  "idRoom": "64a8d1e933f1d1f09b08a9b2",
+  "idUser": "64a8c10b33f1d1f09b08a9a1",
+  "idServices": ["64a8d5f933f1d1f09b08a9c0"]
+}</pre>
+    </div>
+
+    <div class="endpoint">
+        <span class="method DELETE">DELETE</span>
+        <code>/reservations/:id</code>
+        <p class="description">Delete a reservation by ID.</p>
+    </div>
+
+</body>
+</html>
