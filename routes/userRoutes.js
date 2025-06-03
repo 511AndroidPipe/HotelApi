@@ -73,7 +73,7 @@ router.put('/users/:id', async (req, res) => {
 
 // Create new user
 router.post('/users', async (req, res) => {
-    const { email, password, phone, name, age, role } = req.body;
+    const { email, password, phone, name, role } = req.body; // quitado age
 
     try {
         const existingUser = await User.findOne({ email });
@@ -90,7 +90,6 @@ router.post('/users', async (req, res) => {
             email,
             name,
             phone,
-            age,
             password: hashedPassword,
             role: assignedRole
         });

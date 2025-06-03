@@ -18,10 +18,6 @@ const userSchema = new Schema({
     type: [String], // Ejemplo: ['cliente', 'admin']
     default: ['client']
   },
-  age:{
-    type: Number,
-    required: true
-  },
   password:{
     type: String,
     required: true
