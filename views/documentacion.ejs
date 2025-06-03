@@ -1,281 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>API Documentation</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f7f9fc;
-            margin: 0;
-            padding: 20px;
-            color: #333;
-        }
-        h1 {
-            color: #2c3e50;
-            border-bottom: 3px solid #2980b9;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
-        h2 {
-            color: #2980b9;
-            margin-top: 40px;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 5px;
-        }
-        .endpoint {
-            background: white;
-            padding: 20px;
-            margin-bottom: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
-        .method {
-            font-weight: bold;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            display: inline-block;
-            margin-right: 10px;
-        }
-        .GET { background-color: #27ae60; }
-        .POST { background-color: #2980b9; }
-        .PUT { background-color: #f39c12; }
-        .DELETE { background-color: #c0392b; }
-        pre {
-            background: #ecf0f1;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-        code {
-            font-family: Consolas, Monaco, 'Courier New', monospace;
-            color: #2c3e50;
-        }
-        p.description {
-            margin-top: 5px;
-            margin-bottom: 15px;
-            color: #555;
-        }
-        .note {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 0.9em;
-            margin-top: -10px;
-            margin-bottom: 15px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>API Documentation</title>
+  <style>
+    :root {
+      --bg-color: #1e1e2f;
+      --card-bg: #2a2a3c;
+      --text: #ffffffcc;
+      --title: #ffffff;
+      --accent: #4fc3f7;
+      --get: #81c784;
+      --post: #4fc3f7;
+      --put: #ffb74d;
+      --delete: #e57373;
+      --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 30px;
+      font-family: var(--font);
+      background-color: var(--bg-color);
+      color: var(--text);
+    }
+
+    h1 {
+      color: var(--title);
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 10px;
+    }
+
+    h2 {
+      color: var(--accent);
+      font-size: 1.5rem;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+
+    .endpoint {
+      background: var(--card-bg);
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease;
+      overflow: hidden;
+    }
+
+    .endpoint:hover {
+      transform: scale(1.01);
+    }
+
+    .endpoint-header {
+      cursor: pointer;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .method {
+      font-weight: bold;
+      color: white;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+
+    .GET { background-color: var(--get); }
+    .POST { background-color: var(--post); }
+    .PUT { background-color: var(--put); }
+    .DELETE { background-color: var(--delete); }
+
+    .code-block {
+      display: none;
+      padding: 0 20px 20px 20px;
+    }
+
+    .code-block pre {
+      background: #111;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: monospace;
+      color: #eee;
+    }
+
+    .description {
+      margin: 10px 0;
+    }
+
+    .endpoint.active .code-block {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-    <h1>API Documentation</h1>
+  <h1>API Documentation</h1>
 
-    <h2>User Endpoints</h2>
+  <h2>User Endpoints</h2>
 
-    <div class="endpoint">
-        <span class="method GET">GET</span>
-        <code>/users</code>
-        <p class="description">Retrieve all users.</p>
-        <pre>Response:
+  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method GET">GET</span> /users</span><span>▾</span></div><div class="code-block"><p class="description">Retrieve all users.</p><pre>Response:
 [
   {
-    "_id": "64a8c10b33f1d1f09b08a9a1",
+    "_id": "...",
     "email": "example@example.com",
     "name": "John Doe",
-    "phone": "1234567890",
-    "age": 30,
-    "role": ["client"]
-  },
-  ...
-]</pre>
-    </div>
+    ...
+  }
+]</pre></div></div>
 
-    <div class="endpoint">
-        <span class="method GET">GET</span>
-        <code>/users/:email</code>
-        <p class="description">Retrieve a user by email.</p>
-        <pre>Example:
-GET /users/john@example.com
+  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method GET">GET</span> /users/:email</span><span>▾</span></div><div class="code-block"><p class="description">Retrieve a user by email.</p><pre>GET /users/john@example.com
 
 Response:
 {
-  "_id": "64a8c10b33f1d1f09b08a9a1",
+  "_id": "...",
   "email": "john@example.com",
-  "name": "John Doe",
-  "phone": "1234567890",
-  "age": 30,
-  "role": ["client"]
-}</pre>
-    </div>
+  ...
+}</pre></div></div>
 
-    <div class="endpoint">
-        <span class="method POST">POST</span>
-        <code>/users</code>
-        <p class="description">Create a new user.</p>
-        <pre>Request body:
-{
+  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method POST">POST</span> /users</span><span>▾</span></div><div class="code-block"><p class="description">Create a new user.</p><pre>{
   "email": "john@example.com",
   "password": "securepassword",
-  "name": "John Doe",
   "phone": "1234567890",
-  "age": 30,
-  "role": ["client"]
-}
+  "name": "John Doe",
+  "age": 30
+  ...
+}</pre></div></div>
 
-Response:
-{
-  "message": "User successfully registered.",
-  "user": {
-    "_id": "64a8c10b33f1d1f09b08a9a1",
-    "email": "john@example.com",
-    "name": "John Doe",
-    "phone": "1234567890",
-    "age": 30,
-    "role": ["client"]
-  }
-}</pre>
-    </div>
-
-    <div class="endpoint">
-        <span class="method PUT">PUT</span>
-        <code>/users/:id</code>
-        <p class="description">Update a user by ID. If password is included, it will be hashed automatically.</p>
-        <pre>Request body:
-{
+  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method PUT">PUT</span> /users/:id</span><span>▾</span></div><div class="code-block"><p class="description">Update a user by ID.</p><pre>{
   "name": "Jane Doe",
   "password": "newpassword"
-}
+}</pre></div></div>
 
-Response:
-{
-  "_id": "64a8c10b33f1d1f09b08a9a1",
-  "email": "john@example.com",
-  "name": "Jane Doe",
-  "phone": "1234567890",
-  "age": 30,
-  "role": ["client"]
-}</pre>
-    </div>
+  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method DELETE">DELETE</span> /users/:id</span><span>▾</span></div><div class="code-block"><p class="description">Delete a user by ID.</p><pre>{ "message": "User successfully deleted" }</pre></div></div>
 
-    <div class="endpoint">
-        <span class="method DELETE">DELETE</span>
-        <code>/users/:id</code>
-        <p class="description">Delete a user by ID.</p>
-        <pre>Response:
-{
-  "message": "User successfully deleted"
-}</pre>
-    </div>
-
-    <div class="endpoint">
-        <span class="method POST">POST</span>
-        <code>/login</code>
-        <p class="description">User login with email and password.</p>
-        <pre>Request body:
-{
+  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method POST">POST</span> /login</span><span>▾</span></div><div class="code-block"><p class="description">User login with email and password.</p><pre>{
   "email": "john@example.com",
   "password": "securepassword"
-}
+}</pre></div></div>
 
-Response:
-{
-  "message": "Login successful",
-  "role": ["client"]
-}</pre>
-    </div>
+  <h2>Service Endpoints</h2>
 
-    <h2>Service Endpoints</h2>
-
-    <div class="endpoint">
-        <span class="method GET">GET</span>
-        <code>/services</code>
-        <p class="description">Retrieve all services.</p>
-    </div>
-
-    <div class="endpoint">
-        <span class="method POST">POST</span>
-        <code>/services</code>
-        <p class="description">Create a new service.</p>
-        <pre>Request body:
-{
+  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method GET">GET</span> /services</span><span>▾</span></div><div class="code-block"><p class="description">Retrieve all services.</p></div></div>
+  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method POST">POST</span> /services</span><span>▾</span></div><div class="code-block"><p class="description">Create a new service.</p><pre>{
   "name": "Room Service",
   "price": 2500,
   "description": "Food delivered to your room"
-}</pre>
-    </div>
+}</pre></div></div>
+  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method PUT">PUT</span> /services/:id</span><span>▾</span></div><div class="code-block"><p class="description">Update a service by ID.</p></div></div>
+  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method DELETE">DELETE</span> /services/:id</span><span>▾</span></div><div class="code-block"><p class="description">Delete a service by ID.</p></div></div>
 
-    <div class="endpoint">
-        <span class="method PUT">PUT</span>
-        <code>/services/:id</code>
-        <p class="description">Update a service by ID.</p>
-    </div>
+  <h2>Room Endpoints</h2>
 
-    <div class="endpoint">
-        <span class="method DELETE">DELETE</span>
-        <code>/services/:id</code>
-        <p class="description">Delete a service by ID.</p>
-    </div>
-
-    <h2>Room Endpoints</h2>
-
-    <div class="endpoint">
-        <span class="method GET">GET</span>
-        <code>/rooms</code>
-        <p class="description">Retrieve all rooms.</p>
-    </div>
-
-    <div class="endpoint">
-        <span class="method POST">POST</span>
-        <code>/rooms</code>
-        <p class="description">Create a new room.</p>
-        <pre>Request body:
-{
+  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method GET">GET</span> /rooms</span><span>▾</span></div><div class="code-block"><p class="description">Retrieve all rooms.</p></div></div>
+  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method POST">POST</span> /rooms</span><span>▾</span></div><div class="code-block"><p class="description">Create a new room.</p><pre>{
   "type": "suite",
   "status": "available",
   "price": 5000
-}</pre>
-    </div>
+}</pre></div></div>
+  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method PUT">PUT</span> /rooms/:id</span><span>▾</span></div><div class="code-block"><p class="description">Update a room by ID.</p></div></div>
+  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method DELETE">DELETE</span> /rooms/:id</span><span>▾</span></div><div class="code-block"><p class="description">Delete a room by ID.</p></div></div>
 
-    <div class="endpoint">
-        <span class="method PUT">PUT</span>
-        <code>/rooms/:id</code>
-        <p class="description">Update a room by ID.</p>
-    </div>
+  <h2>Reservation Endpoints</h2>
 
-    <div class="endpoint">
-        <span class="method DELETE">DELETE</span>
-        <code>/rooms/:id</code>
-        <p class="description">Delete a room by ID.</p>
-    </div>
-
-    <h2>Reservation Endpoints</h2>
-
-    <div class="endpoint">
-        <span class="method GET">GET</span>
-        <code>/reservations</code>
-        <p class="description">Retrieve all reservations.</p>
-    </div>
-
-    <div class="endpoint">
-        <span class="method POST">POST</span>
-        <code>/reservations</code>
-        <p class="description">Create a new reservation.</p>
-        <pre>Request body:
-{
+  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method GET">GET</span> /reservations</span><span>▾</span></div><div class="code-block"><p class="description">Retrieve all reservations.</p></div></div>
+  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method POST">POST</span> /reservations</span><span>▾</span></div><div class="code-block"><p class="description">Create a new reservation.</p><pre>{
   "datetime": "2025-06-15T14:30:00Z",
-  "idRoom": "64a8d1e933f1d1f09b08a9b2",
-  "idUser": "64a8c10b33f1d1f09b08a9a1",
-  "idServices": ["64a8d5f933f1d1f09b08a9c0"]
-}</pre>
-    </div>
+  "idRoom": "...",
+  "idUser": "...",
+  "idServices": ["..."]
+}</pre></div></div>
+  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method DELETE">DELETE</span> /reservations/:id</span><span>▾</span></div><div class="code-block"><p class="description">Delete a reservation by ID.</p></div></div>
 
-    <div class="endpoint">
-        <span class="method DELETE">DELETE</span>
-        <code>/reservations/:id</code>
-        <p class="description">Delete a reservation by ID.</p>
-    </div>
-
+  <script>
+    function toggle(header) {
+      const endpoint = header.parentElement;
+      endpoint.classList.toggle("active");
+    }
+  </script>
 </body>
 </html>
