@@ -2,7 +2,11 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-    datetime:{
+    datetimeArrive:{
+        type: Date,
+        required: true
+    },
+    datetimeDeparture:{
         type: Date,
         required: true
     },

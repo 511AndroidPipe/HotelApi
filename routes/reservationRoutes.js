@@ -38,13 +38,14 @@ router.get('/reservations/:id', async (req, res) => {
     }
 });
 
-// Create a new reservation
+// Crear una nueva reserva
 router.post('/reservations', async (req, res) => {
-    const { datetime, idRoom, idUser, idServices } = req.body;
+    const { datetimeArrive, datetimeDeparture, idRoom, idUser, idServices } = req.body;
 
     try {
         const newReservation = new Reservation({
-            datetime,
+            datetimeArrive,
+            datetimeDeparture,
             idRoom,
             idUser,
             idServices
@@ -59,12 +60,14 @@ router.post('/reservations', async (req, res) => {
     }
 });
 
-// Update a reservation
+// Actualizar una reserva
 router.put('/reservations/:id', async (req, res) => {
     try {
+        const { datetimeArrive, datetimeDeparture, idRoom, idUser, idServices } = req.body;
+
         const updatedReservation = await Reservation.findByIdAndUpdate(
             req.params.id,
-            req.body,
+            { datetimeArrive, datetimeDeparture, idRoom, idUser, idServices },
             { new: true, runValidators: true }
         );
 
