@@ -31,12 +31,14 @@ router.get('/services/:id', async (req, res) => {
     }
 });
 
-// Create a new service
+// ...existing code...
+
+// Crear un nuevo servicio
 router.post('/services', async (req, res) => {
-    const { name, price, description } = req.body;
+    const { img, name, price, description } = req.body;
 
     try {
-        const newService = new Service({ name, price, description });
+        const newService = new Service({ img, name, price, description });
         await newService.save();
         res.status(201).json({ message: 'Service successfully created.', service: newService });
     } catch (error) {
@@ -45,25 +47,30 @@ router.post('/services', async (req, res) => {
     }
 });
 
-// // Update a service
-// router.put('/services/:id', async (req, res) => {
-//     try {
-//         const updatedService = await Service.findByIdAndUpdate(
-//             req.params.id,
-//             req.body,
-//             { new: true, runValidators: true }
-//         );
+// ...existing code...
 
-//         if (!updatedService) {
-//             return res.status(404).json({ message: 'Service not found' });
-//         }
+// Actualizar un servicio
+router.put('/services/:id', async (req, res) => {
+    try {
+        const { img, name, price, description } = req.body;
+        const updatedService = await Service.findByIdAndUpdate(
+            req.params.id,
+            { img, name, price, description },
+            { new: true, runValidators: true }
+        );
 
-//         res.json(updatedService);
-//     } catch (error) {
-//         console.error("Error updating service:", error);
-//         res.status(500).send(error);
-//     }
-// });
+        if (!updatedService) {
+            return res.status(404).json({ message: 'Service not found' });
+        }
+
+        res.json(updatedService);
+    } catch (error) {
+        console.error("Error updating service:", error);
+        res.status(500).send(error);
+    }
+});
+
+// ...existing code...
 
 // // Delete a service
 // router.delete('/services/:id', async (req, res) => {

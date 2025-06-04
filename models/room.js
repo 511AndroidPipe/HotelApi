@@ -2,6 +2,10 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const roomSchema = new Schema({
+  img:{
+    type:String,
+    required: true
+  },
   type:{
     type: String,
     required: true
