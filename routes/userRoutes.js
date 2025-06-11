@@ -96,7 +96,7 @@ router.post('/users', async (req, res) => {
 
         await newUser.save();
 
-        res.status(201).json({ message: 'User successfully registered.', user: newUser });
+       res.status(200).json({ message: "Login successful", role: user.role });
     } catch (error) {
         console.error('Error creating user:', error);
         res.status(500).json({ message: 'Internal server error while registering user.' });
