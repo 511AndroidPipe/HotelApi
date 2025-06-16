@@ -165,14 +165,107 @@ Response:
 
   <h2>Room Endpoints</h2>
 
-  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method GET">GET</span> /rooms</span><span>▾</span></div><div class="code-block"><p class="description">Retrieve all rooms.</p></div></div>
-  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method POST">POST</span> /rooms</span><span>▾</span></div><div class="code-block"><p class="description">Create a new room.</p><pre>{
+  <div class="endpoint">
+    <div class="endpoint-header" onclick="toggle(this)">
+      <span><span class="method GET">GET</span> /rooms</span><span>▾</span>
+    </div>
+    <div class="code-block">
+      <p class="description">Obtener todas las habitaciones (con servicios asociados si usas populate).</p>
+      <pre>[
+  {
+    "_id": "...",
+    "img": "https://ejemplo.com/habitacion.jpg",
+    "type": "suite",
+    "status": "available",
+    "price": 120,
+    "services": [
+      {
+        "_id": "665f1a2b3c4d5e6f7a8b9c0f",
+        "name": "Desayuno",
+        "price": 10,
+        "description": "Desayuno en la habitación",
+        "img": "https://ejemplo.com/desayuno.jpg"
+      }
+      // ...otros servicios
+    ]
+  }
+  // ...otras habitaciones
+]</pre>
+    </div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header" onclick="toggle(this)">
+      <span><span class="method GET">GET</span> /rooms/:id</span><span>▾</span>
+    </div>
+    <div class="code-block">
+      <p class="description">Obtener una habitación por ID (con servicios asociados si usas populate).</p>
+      <pre>{
+  "_id": "...",
+  "img": "https://ejemplo.com/habitacion.jpg",
   "type": "suite",
   "status": "available",
-  "price": 5000
-}</pre></div></div>
-  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method PUT">PUT</span> /rooms/:id</span><span>▾</span></div><div class="code-block"><p class="description">Update a room by ID.</p></div></div>
-  <div class="endpoint"><div class="endpoint-header" onclick="toggle(this)"><span><span class="method DELETE">DELETE</span> /rooms/:id</span><span>▾</span></div><div class="code-block"><p class="description">Delete a room by ID.</p></div></div>
+  "price": 120,
+  "services": [
+    {
+      "_id": "665f1a2b3c4d5e6f7a8b9c0f",
+      "name": "Desayuno",
+      "price": 10,
+      "description": "Desayuno en la habitación",
+      "img": "https://ejemplo.com/desayuno.jpg"
+    }
+    // ...otros servicios
+  ]
+}</pre>
+    </div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header" onclick="toggle(this)">
+      <span><span class="method POST">POST</span> /rooms</span><span>▾</span>
+    </div>
+    <div class="code-block">
+      <p class="description">Crear una nueva habitación (puedes incluir servicios asociados).</p>
+      <pre>{
+  "img": "https://ejemplo.com/habitacion.jpg",
+  "type": "suite",
+  "status": "available",
+  "price": 120,
+  "services": [
+    "665f1a2b3c4d5e6f7a8b9c0f",
+    "665f1a2b3c4d5e6f7a8b9c10"
+  ]
+}</pre>
+    </div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header" onclick="toggle(this)">
+      <span><span class="method PUT">PUT</span> /rooms/:id</span><span>▾</span>
+    </div>
+    <div class="code-block">
+      <p class="description">Actualizar una habitación por ID.</p>
+      <pre>{
+  "img": "https://ejemplo.com/habitacion.jpg",
+  "type": "suite deluxe",
+  "status": "maintenance",
+  "price": 150,
+  "services": [
+    "665f1a2b3c4d5e6f7a8b9c0f"
+  ]
+}</pre>
+    </div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header" onclick="toggle(this)">
+      <span><span class="method DELETE">DELETE</span> /rooms/:id</span><span>▾</span>
+    </div>
+    <div class="code-block">
+      <p class="description">Eliminar una habitación por ID.</p>
+      <pre>{ "message": "Room successfully deleted" }</pre>
+    </div>
+  </div>
 
   <h2>Reservation Endpoints</h2>
 

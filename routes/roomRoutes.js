@@ -6,28 +6,26 @@ const router = express.Router();
 
 router.use(bodyParser.json());
 
-// Get all rooms
+// Obtener todas las habitaciones con servicios completos
 router.get('/rooms', async (req, res) => {
     try {
-        const rooms = await Room.find();
+        const rooms = await Room.find().populate('services');
         res.json(rooms);
     } catch (error) {
-        console.error("Error fetching rooms:", error);
-        res.status(500).send(error);
+        res.status(500).json({ message: 'Error fetching rooms' });
     }
 });
 
-// Get a room by ID
+// Obtener una habitación por ID con servicios completos
 router.get('/rooms/:id', async (req, res) => {
     try {
-        const room = await Room.findById(req.params.id);
+        const room = await Room.findById(req.params.id).populate('services');
         if (!room) {
             return res.status(404).json({ message: 'Room not found' });
         }
         res.json(room);
     } catch (error) {
-        console.error("Error fetching room:", error);
-        res.status(500).send(error);
+        res.status(500).json({ message: 'Error fetching room' });
     }
 });
 

@@ -1,3 +1,4 @@
+import { render } from 'ejs';
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
@@ -18,7 +19,11 @@ const roomSchema = new Schema({
   price:{
     type: Number,
     required: true
-  }
+  },
+  services: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Service'
+  }]
 })
 
 const Room = mongoose.model('Room', roomSchema, 'rooms');
