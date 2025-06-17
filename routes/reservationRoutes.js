@@ -11,7 +11,6 @@ router.get('/reservations', async (req, res) => {
         const reservations = await Reservation.find()
             .populate('idRoom')
             .populate('idUser')
-            .populate('idServices');
         res.json(reservations);
     } catch (error) {
         console.error("Error fetching reservations:", error);
@@ -25,8 +24,6 @@ router.get('/reservations/:id', async (req, res) => {
         const reservation = await Reservation.findById(req.params.id)
             .populate('idRoom')
             .populate('idUser')
-            .populate('idServices');
-
         if (!reservation) {
             return res.status(404).json({ message: 'Reservation not found' });
         }
