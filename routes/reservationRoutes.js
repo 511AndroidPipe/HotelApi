@@ -40,15 +40,14 @@ router.get('/reservations/:id', async (req, res) => {
 
 // Crear una nueva reserva
 router.post('/reservations', async (req, res) => {
-    const { datetimeArrive, datetimeDeparture, idRoom, idUser, idServices } = req.body;
+    const { datetimeArrive, datetimeDeparture, idRoom, idUser } = req.body;
 
     try {
         const newReservation = new Reservation({
             datetimeArrive,
             datetimeDeparture,
             idRoom,
-            idUser,
-            idServices
+            idUser
         });
 
         await newReservation.save();

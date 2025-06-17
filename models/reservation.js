@@ -19,11 +19,7 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId, 
         ref: 'User',
         required: true
-    },
-    idServices: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Service'
-    }]
+    }
 })
 
 const Reservation = mongoose.model('Reservation', userSchema, 'reservations');
